@@ -5,13 +5,24 @@ const inter = Inter({subsets: ['latin']});
 
 export default function Home() {
   const inputRef = useRef<HTMLInputElement>(null);
+  // const [products, setProducts] = useState<
+  //   {id: string; properties: {id: string}[]}[]
+  // >([]);
+
   const [products, setProducts] = useState<
-    {id: string; properties: {id: string}[]}[]
+    {id: string; name: string; createdAt: string}[]
   >([]);
+
+  // useEffect(() => {
+  //   fetch(`/api/get-items`)
+  //     .then(res => res.json())
+  //     .then(data => setProducts(data.message));
+  // }, []);
+
   useEffect(() => {
-    fetch(`/api/get-items`)
+    fetch(`/api/get-products`)
       .then(res => res.json())
-      .then(data => setProducts(data.message));
+      .then(data => setProducts(data.items));
   }, []);
 
   const handleClick = () => {
@@ -32,7 +43,15 @@ export default function Home() {
       <button onClick={handleClick}>Add Jacket</button>
       <div>
         <p>Product List</p>
-        {products &&
+        {
+          products &&
+            products.map(item => (
+              <div key={item.id}>
+                {item.name}
+                <p>{item.createdAt}</p>
+              </div>
+            ))
+          /* {products &&
           products.map(item => (
             <div key={item.id}>
               {JSON.stringify(item)}
@@ -52,7 +71,8 @@ export default function Home() {
                   </button>
                 ))}
             </div>
-          ))}
+          ))} */
+        }
       </div>
     </main>
   );
