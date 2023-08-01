@@ -1,5 +1,7 @@
+import {css} from '@emotion/react';
 import {Inter} from 'next/font/google';
 import {useEffect, useRef, useState} from 'react';
+import Button from '../../component/Button';
 
 const inter = Inter({subsets: ['latin']});
 
@@ -39,40 +41,31 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
-      <input ref={inputRef} type="text" placeholder="name" />
-      <button onClick={handleClick}>Add Jacket</button>
+      <input
+        className="placeholder:italic placeholder:text-slate-400 block bg-white w-100 border border-slate-300 rounded-md py-2 pl-3 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+        ref={inputRef}
+        type="text"
+        placeholder="name"
+      />
+      <button
+        css={css`
+          background-color: hotpink;
+          padding: 16px;
+          border-radius: 8px;
+        `}
+        onClick={handleClick}
+      >
+        Add Jacket
+      </button>
       <div>
         <p>Product List</p>
-        {
-          products &&
-            products.map(item => (
-              <div key={item.id}>
-                {item.name}
-                <p>{item.createdAt}</p>
-              </div>
-            ))
-          /* {products &&
+        {products &&
           products.map(item => (
             <div key={item.id}>
-              {JSON.stringify(item)}
-              {item.properties &&
-                Object.entries(item.properties).map(([key, value]) => (
-                  <button
-                    key={key}
-                    onClick={() => {
-                      fetch(
-                        `/api/get-detail?pageId=${item.id}&propertyId=${value.id}`,
-                      )
-                        .then(res => res.json())
-                        .then(data => alert(JSON.stringify(data.detail)));
-                    }}
-                  >
-                    {key}
-                  </button>
-                ))}
+              {item.name}
+              <p>{item.createdAt}</p>
             </div>
-          ))} */
-        }
+          ))}
       </div>
     </main>
   );

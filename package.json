@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@notionhq/client": "^2.2.8",
     "@prisma/client": "^5.0.0",
     "@types/node": "20.4.4",
@@ -26,6 +28,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@emotion/babel-plugin": "^11.11.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
     "prisma": "^5.0.0"
