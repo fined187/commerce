@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import Carousel from 'nuka-carousel';
 import Image from 'next/image';
+import CustomEditor from '../../../../component/Editor';
 
 const images = [
   {
@@ -51,6 +52,7 @@ export default function Products() {
           </div>
         ))}
       </div>
+      <CustomEditor />
     </>
   );
 }
